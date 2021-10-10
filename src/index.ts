@@ -21,3 +21,10 @@ app.get('/', (request, response) => {
 });
 
 app.listen(port, () => console.log(`Running on port ${port}`));
+
+const onProcessSignal = async (signal: NodeJS.Signals) => {
+    logger.info('Got signal', signal);
+    logger.info('Bye...');
+};
+process.on('SIGTERM', onProcessSignal);
+process.on('SIGINT', onProcessSignal);
